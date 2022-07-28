@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title th:text="${usuario.nombre}"></title>
+</head>
+<body>
+<h1>Modificación de usuario</h1>
+
+	<form method="POST" th:action="@{/usuarios/persistir}" th:object="${usuario}">
+		<label for="imagen">Imagen Actual: </label> <label th:text="${usuario.avatar}"></label>
+		<br></br>
+		<label for="avatar">Imagen</label> 
+		<input type="file" name="avatar" th:field="*{avatar}"/> 
+		<br></br>
+		<label for="nombre">Nombre</label> 
+		<input type="text" name="nombre" th:field="*{nombre}" required/> 
+		<br></br>
+		<label for="apellidos">Apellidos</label> 
+		<input type="text" name="apellidos" th:field="*{apellidos}" required/> 
+		<br></br>
+		<label for="nick">Nick</label> 
+		<input type="text" name="nick" th:field="*{nick}" required/> 
+		<br></br>
+		
+		<label for="pass">Contraseña</label> 
+		<input type="text" name="pass" th:field="*{password}" /> 
+		<br></br>
+		
+		<label for="pass">Confirmar contraseña</label> 
+		<input type="text" name="pass"/> 
+		<br></br>
+		
+		<label for="tlf">Teléfono</label> 
+		<input type="tel" name="tlf" th:field="*{tlf}" required/> 
+		<br></br>
+		<label for="email">Email</label> 
+		<input type="text" name="email" th:field="*{email}" required/> 
+		<br></br>
+		<label for="fecharegistro">Fecha Salida</label>
+		<input type="date" name="fecharegistro" th:field="*{fecharegistro}"/> 
+		<br></br>
+		<label for="privado">Privado</label> 
+		<select name="privado" th:field="*{privado}" required>
+			<option value=false>Público</option>
+			<option value=true>Privado</option>
+		</select> 
+		<br></br>
+		<label for="status">Status</label>
+		<select  name="status" th:field="*{status}" required>
+			<option value=true>Activo</option>
+			<option value=false>Desactivado</option>
+		</select> 
+		
+		<br></br>
+		<input type="hidden" th:field="*{idusuario}"/>
+		
+		<input type="submit" value="Modificar"/>
+	</form>
+	
+<a th:href="@{/usuarios}">Atrás</a>
+</body>
+</html>

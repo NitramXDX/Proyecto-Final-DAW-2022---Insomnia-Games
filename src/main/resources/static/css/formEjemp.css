@@ -1,0 +1,59 @@
+@import "./adminBasic.css";
+
+#content {
+	margin-top: -3.75rem;
+}
+
+#newKey {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+h2 {
+	margin-top: 1.25rem;
+}
+
+form div {
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.625rem;
+	margin-top: 1.25rem;
+	font-size: 1.25rem;
+}
+
+form input, form select {
+	height: 1.75rem;
+	font-size: 1rem;
+	text-align: center;
+}
+
+form div>div {
+	display: flex;
+	flex-direction: row;
+	gap: 1.25rem;
+	justify-content: center;
+	margin-top: -1.25rem;
+}
+
+.buttonPage {
+	width: 6.875rem;
+    border-radius: 0.313rem;
+    border: solid 0.2rem var(--HoverLinks);
+    color: white;
+    border-color: var(--Links);
+    background-color: var(--Links);
+    font-family: Montserrat-Bold;
+    margin-top: 1.563rem;
+    text-align: center;
+    line-height: 1.75rem;
+    font-size: 1rem;
+}
+
+.buttonPage:hover {
+    border-color: var(--HoverLinks);
+    background-color: var(--Links);
+    color: white;
+}

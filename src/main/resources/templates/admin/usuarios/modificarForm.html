@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Editar Perfil</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/formUser.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+		
+			
+			<p id="error" th:text="${mensaje}"></p>
+			<p id="error2"></p>
+		
+			<form method="POST" th:action="@{/usuarios/admin/persistir}" th:object="${usuario}" enctype="multipart/form-data">
+			
+				<div>
+					<div id="imgContainer">
+						<label for="file"><img th:src="@{${'/images/userAvatars/'+usuario.avatar}}" th:alt="${usuario.nick}"></label>
+					</div>
+					<input type="file" name="imagen" id="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"> 
+					<h1 th:text="${usuario.nick}"></h1>
+				</div>
+				
+				<div> 
+					<div>
+						<label for="nick">Nombre de Usuario</label> 
+						<input type="text" name="nick" th:field="*{nick}" required/>
+					</div>
+					<div> 
+						<label for="roles">Role</label>
+						<select  name="roles" th:field="*{role.idrole}" required>
+							<option th:each="role : ${roles}" th:value="${role.idrole}" th:text="${role.nombre}"></option>
+						</select>
+					</div> 
+				</div>
+				
+				<div>
+					<div>
+						<label for="pass">Contraseña</label> 
+						<input type="password" name="pass" th:field="*{password}" /> 
+					</div>
+					<div>
+						<label for="pass">Repetir Contraseña</label> 
+						<input type="password" name="pass" id="password2"/>
+					</div> 
+				</div>
+				
+				<div>
+					<div>
+						<label for="nombre">Nombre</label> 
+						<input type="text" name="nombre" th:field="*{nombre}" required/> 
+					</div>
+					<div>
+						<label for="apellidos">Apellidos</label> 
+						<input type="text" name="apellidos" th:field="*{apellidos}" required/>
+					</div> 
+				</div>
+				
+				<div>
+					<div>
+						<label for="tlf">Móvil</label> 
+						<input type="tel" name="tlf" th:field="*{tlf}" required/>
+					</div>
+					<div> 
+						<label for="email">Email</label> 
+						<input type="text" name="email" th:field="*{email}" required/>
+					</div>	 
+				</div>
+				
+				<div>
+					<div>
+						<label for="privado">Visibilidad</label> 
+						<select name="privado" th:field="*{privado}" required>
+							<option value=false>Público</option>
+							<option value=true>Privado</option>
+						</select> 
+					</div>
+					<div>
+						<label for="status">Status</label>
+						<select  name="status" th:field="*{status}" required>
+							<option value=true>Activo</option>
+							<option value=false>Banned</option>
+						</select>
+					</div> 
+				</div>
+				
+				<input type="hidden" th:field="*{idusuario}"/>
+				
+				<input type="submit" value="Modificar"/>
+				
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/imagesForm.js"></script>
+	<script src="/scripts/formCheckModUsers.js"></script>
+</body>
+</html>

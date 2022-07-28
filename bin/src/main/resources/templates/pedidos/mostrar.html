@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Pedidos</title>
+</head>
+<body>
+	<h1>PANEL DE ADMINISTRADOR</h1>
+	<a th:href="@{/productos}">Productos</a>
+	<a th:href="@{/plataformas}">Plataformas</a>
+	<a th:href="@{/usuarios}">Usuarios</a>
+	<a th:href="@{/pedidos}">Pedidos</a>
+	<a th:href="@{/ejemplares}">Stock</a>
+	<a th:href="@{/}">Salir</a>
+<h1>Lista de pedidos</h1>
+<table>
+	<tr>
+		<th>ID Pedido</th> <th>Usuario</th> <th>Importe Total</th> <th>Fecha Compra</th> <th>Acciones</th>
+	</tr>
+	<tr th:each="pedido : ${pedidos}">
+		<td th:text="${pedido.idpedido}"></td>
+		<td th:text="${pedido.usuario.nick}"></td>
+		<td th:text="${pedido.importe}+'€'"></td>
+		<td th:text="${pedido.fechacompra}"></td>
+		<td>
+			<a th:href="@{/pedidos/modificarForm(id=${pedido.idpedido})}" th:text="Modificar"></a>
+			<a th:href="@{/pedidos/eliminar(id=${pedido.idpedido})}" th:text="Eliminar"></a>
+			<a th:href="@{/pedidos/detalle(id=${pedido.idpedido})}" th:text="Detalle"></a>
+			<a th:href="@{/lineapedidos/insertarForm(id=${pedido.idpedido})}" th:text="'Lineas de Pedido'"></a>
+		</td>
+	</tr>
+</table>
+
+
+<a th:href="@{/pedidos/insertarForm}">Nuevo Pedido</a>
+</body>
+</html>

@@ -1,0 +1,59 @@
+@import "./adminBasic.css";
+
+
+#content {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+}
+
+#content a {
+	margin: 1.25rem;
+}
+
+#content img {
+	width: 18rem;
+	margin-bottom: 1.625rem;
+}
+
+form{
+	width: 31.25rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	gap: 1.25rem;
+	font-size: 1.438rem;
+	margin-top: 0.5rem;
+	padding-bottom: 0.3rem;
+	padding-top: 1.75rem;
+}
+
+form div {
+	display: flex;
+	width: 18.75rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+#buttons {
+	display: flex;
+	flex-direction: row;
+}
+
+form input{
+	width:12.5rem;
+	height: 1.563rem;
+	border-radius: 0.313rem;
+	text-align: center;
+	font-family: Montserrat-SemiBold;
+	font-size: 1rem;
+}
+
+form input[type="submit"] {
+	margin: auto;
+}
+

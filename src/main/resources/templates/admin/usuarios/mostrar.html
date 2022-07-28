@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Usuarios Registrados</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/adminBasic.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+			
+		<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+			<h1>Usuarios Registrados</h1>
+			
+			<table id="tableUsers">
+				<tr>
+					<th>Avatar</th> <th>Usuario</th> <th>Email</th> <th>Pedidos</th> <th>Visibilidad</th> <th>Status</th> <th>Registro</th> <th>Role</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="usuario : ${#lists.sort(usuarios, byNombre)}">
+					<td>
+						<div id="imgContainer">
+							<img th:src="@{${'/images/userAvatars/'+usuario.avatar}}"></img>
+						</div>
+					</td>
+					<td th:text="${usuario.nick}"></td>
+					<td th:text="${usuario.email}"></td>
+					<td th:text="${#lists.size(usuario.pedido)}"></td>
+					<td th:text="${usuario.privado} ? 'Privado' : 'Público'"></td>
+					<td th:text="${usuario.status} ? 'Activo' : 'Banned'"></td>
+					<td th:text="${usuario.fecharegistro}"></td>
+					<td th:text="${usuario.role.nombre}"></td>
+					<td>
+						<div>
+							<a th:href="@{/usuarios/admin/modificarForm(id=${usuario.idusuario})}"><i class="fa-solid fa-pen-to-square" title="Modificar"></i></a>
+							<a th:href="@{/usuarios/admin/eliminar(id=${usuario.idusuario})}"><i class="fa-solid fa-trash-can" title="Eliminar"></i></a>
+							<a th:href="@{/usuarios/admin/usuarioPedidos(idusuario=${usuario.idusuario})}"><i class="fa-solid fa-cart-shopping" title="Pedidos"></i></a>
+						</div>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<div>
+			
+				<div class="paginacion">
+				
+					<p class="pagina" th:classappend="${prev == 0 ? 'disabled' : ''}">
+						<a th:href="@{|/usuarios/admin?page=${prev}|}"><i class="fa-solid fa-backward" title="Anterior"></i></a>
+					</p>
+					<p class="pagina" th:each="page : ${pages}" th:classappend="${current == page ? 'active' : ''}">
+						<a th:href="@{|/usuarios/admin?page=${page}|}" th:text="${page}"></a>
+					</p>
+					<p class="pagina" th:classappend="${current == last ? 'disabled' : ''}">
+						<a th:href="@{|/usuarios/admin?page=${next}|}"><i class="fa-solid fa-forward" title="Siguiente"></i></a>
+					</p>
+						
+				</div>
+				
+			</div>
+			
+			<a class="plusButton" th:href="@{/usuarios/admin/insertarForm}">Nuevo usuario</a>
+			
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

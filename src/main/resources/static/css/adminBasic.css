@@ -1,0 +1,98 @@
+@import "./general.css";
+@import "./tables.css";
+
+body{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#section {
+	flex-direction: row;
+}
+
+h1 {
+	text-align: center;
+}
+
+#panel {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: center;
+	background-color: var(--BackgroundElements);
+	border-radius: 1.25rem;
+	height: 17.625rem;
+	width: 12.375rem;	
+	font-family: Montserrat-Bold;
+	font-size: 1rem;
+	margin-top: 6.688rem;
+	padding-top: 1.25rem;
+	padding-bottom: 1.25rem;
+}
+
+#content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+/* 	border: solid 0.125rem black; */
+	width: 65.25rem;
+	padding-top: 0.625rem;
+	margin-bottom: 2.5rem;
+}
+
+#error, #error2{
+	display: block;
+	height: 20px;
+	margin-top: 0.55rem;
+	margin-bottom: 0.55rem;
+}
+
+#filters {
+	display: flex;
+	flex-direction: row;
+}
+
+#filters label{
+	margin-left: 1.25rem;
+	margin-right: 0.625rem;
+}
+
+/* Submit Buttons */
+input[type="submit"] {
+	width: 6.875rem;
+    height: 2.188rem;
+    border-radius: 0.313rem;
+    border: solid 0.2rem var(--HoverLinks);
+    
+    color: white;
+    border-color: var(--Links);
+    background-color: var(--Links);
+    
+    font-family: Montserrat-Bold;
+    margin-top: 1.563rem;
+    font-size: 1rem;
+}
+
+
+input[type="submit"]:hover {
+    border-color: var(--HoverLinks);
+    background-color: var(--Links);
+    color: white;
+}
+
+
+form input, form select{
+	height: 1.563rem;
+	border-radius: 0.313rem;
+	font-family: Montserrat-SemiBold;
+	font-size: 1rem;
+}
+
+form {
+	padding: 1.25rem;
+	border-radius: 0.938rem;
+	background-color: var(--BackgroundElements);
+}
+

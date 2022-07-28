@@ -1,0 +1,11 @@
+@import "formUser.css";
+
+
+#content {
+	width: 50rem;
+}
+
+.usuarioPedidos {
+	transform: translateY(2.813rem);
+}
+

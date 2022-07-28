@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="www.tymeleaf.com">
+<head>
+	<meta charset="utf-8">
+	<title>Historial de pedidos</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/lineasPedidos.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+			<p id="error" th:text="${mensaje}"></p>		
+		
+			<h1 id="registroPedidos" th:text="'Pedidos de '+${usuario.nick}"></h1>
+			<div id="datosPedido">
+				<div>
+					<p th:text="'Username: '+${usuario.nick}"></p>
+					<p th:text="'Nombre: ' +${usuario.nombre} + ' ' + ${usuario.apellidos}"></p>
+				</div>
+				<div> 
+					<p th:text="'Email: ' +${usuario.email}"></p>
+					<p th:text="'Status: '+ (${usuario.status} ? 'Activo' : 'Inactivo')"></p>
+				</div>
+			</div>
+			<table>
+			
+				<tr>
+					<th>ID Pedido</th><th>Fecha de Compra</th> <th>Estado</th> <th>Importe</th> <th>Acciones</th>
+				</tr>
+					
+				<tr th:each="pedido : ${pedidos}">
+					<td th:text="${pedido.idpedido}"></td>
+					<td th:text="${pedido.fechacompra}"></td>
+					<td th:text="${pedido.estado}"></td>
+					<td th:text="${pedido.importe} ? ${pedido.importe}+'€' : '0.00€'"></td>
+					<td>
+						<a th:href="@{/pedidos/admin/eliminar(id=${pedido.idpedido})}"><i class="fa-solid fa-trash-can" title="Eliminar"></i></a>
+						<a th:href="@{/lineaPedidos/admin/(idpedido=${pedido.idpedido})}"><i class="fa-solid fa-right-to-bracket" title="Detalle"></i></a>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<form th:action="@{/pedidos/admin/persistir}" method="POST" th:object="${pedido}">
+				<h2>(Only for Testing)</h2>
+				<input type="hidden" th:field="*{usuario.idusuario}"/>
+				<input type="submit" value="Nuevo Pedido"></input> 
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

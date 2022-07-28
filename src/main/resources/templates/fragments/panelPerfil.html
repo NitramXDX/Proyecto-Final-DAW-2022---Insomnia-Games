@@ -1,0 +1,7 @@
+<div id="panel" class="panelPerfil">
+		<meta charset="utf-8">
+			<a th:href="@{/usuarios/user/perfil}">PERFIL</a>
+			<a th:href="@{/usuarios/user/usuarioPedidos}">PEDIDOS</a>
+			<a th:href="@{/productos/admin}" sec:authorize="hasAuthority('ADMIN')">ADMINISTRADOR</a>
+			<a th:href="@{/logout}">CERRAR SESIÓN</a>
+</div>

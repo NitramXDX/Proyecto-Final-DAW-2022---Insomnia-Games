@@ -1,0 +1,51 @@
+@import "./adminBasic.css";
+
+#datosPedido {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 80%;
+	align-items: center;
+}
+
+table {
+	width: 80%;
+}
+
+#button-price{
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 1.25rem;
+}
+
+.plusButton {
+	background-color: #DF2727; 
+	border-color: #DF2727; 
+}
+
+.plusButton:hover {
+	background-color: #DF2727;
+	border-color: #FF9F9F; 
+}
+
+#content>h2 {
+	margin-top: 20px;
+}
+
+#content > #registroPedidos{
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+form input[type="submit"]{
+	width: 9rem;
+}

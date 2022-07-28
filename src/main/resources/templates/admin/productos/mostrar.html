@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Productos</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/adminBasic.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+			<h1>Lista de productos </h1> 
+			
+			<table>
+			
+				<tr>
+					<th>Imagen</th> <th>Nombre</th> <th>Plataforma</th> <th>Disponibilidad</th> <th>Precio</th> <th>Descuento</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="producto : ${#lists.sort(productos, byNombre)}">
+				
+					<td>
+						<div id="imgContainerSquare">
+							<img th:src="@{${'/images/products/'+producto.imagen}}"></img>
+						</div>
+					</td>
+					<td><a th:text="${producto.nombre}" th:href="@{/productos/detalle(nombre=${producto.nombre}, plataforma=${producto.plataforma.nombre})}"></a></td>
+					<td th:text="${producto.plataforma.nombre}"></td>
+					<td th:text="${#lists.size(producto.ejemplar.?[lineapedido == null])==0 ? 'Sin existencias' :  #lists.size(producto.ejemplar.?[lineapedido == null])}"></td>
+					<td th:text="${producto.precio}+'€'"></td>
+					<td th:text="${producto.descuento}+'%'"></td>
+					<td>
+						<div>
+							<a th:href="@{/productos/admin/modificarForm(id=${producto.idproducto})}" ><i class="fa-solid fa-pen-to-square" title="Modificar"></i></a>
+							<a th:href="@{/productos/admin/eliminar(id=${producto.idproducto})}"><i class="fa-solid fa-trash-can"title="Eliminar"></i></a>
+							<a th:href="@{/productos/admin/ejemplares(id=${producto.idproducto})}"><i class="fa-solid fa-key"  title="Ejemplares"></i></a>
+						</div>
+					</td>
+					
+				</tr>
+				
+			</table>
+			
+			<div>
+			
+				<div class="paginacion">
+				
+					<p class="pagina" th:classappend="${prev == 0 ? 'disabled' : ''}">
+						<a th:href="@{|/productos/admin?page=${prev}|}"><i class="fa-solid fa-backward" title="Anterior"></i></a>
+					</p>
+					<p class="pagina" th:each="page : ${pages}" th:classappend="${current == page ? 'active' : ''}">
+						<a th:href="@{|/productos/admin?page=${page}|}" th:text="${page}"></a>
+					</p>
+					<p class="pagina" th:classappend="${current == last ? 'disabled' : ''}">
+						<a th:href="@{|/productos/admin?page=${next}|}"><i class="fa-solid fa-forward" title="Siguiente"></i></a>
+					</p>
+						
+				</div>
+				
+			</div>
+			<a class="plusButton" th:href="@{/productos/admin/insertarForm}" title="Nuevo Producto">Nuevo Producto</a>
+			
+			
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

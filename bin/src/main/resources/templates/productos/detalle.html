@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title th:text="${producto.nombre}+' - '+${producto.plataforma.nombre}"></title>
+</head>
+<body>
+
+<a th:href="@{/productos}">Atrás</a>
+</body>
+</html>

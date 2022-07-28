@@ -1,0 +1,31 @@
+@import "./general.css";
+
+#section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+	margin-top: 6.25rem;
+	font-size: 1.25rem;
+}
+
+#section img {
+	width: 18.75rem;
+	margin-top: 0.625rem;
+}
+
+#section div {
+	margin-top: 0.625rem;
+}
+
+
+.square {
+	border-radius: 100%;
+	overflow: hidden;
+	margin-top: 2.5rem;
+	background-color: black;
+}
+
+.square>img {
+	transform: translateY(0.313rem);
+}

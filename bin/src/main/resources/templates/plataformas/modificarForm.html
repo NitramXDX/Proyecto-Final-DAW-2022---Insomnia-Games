@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title th:text="${plataforma.nombre}"></title>
+</head>
+<body>
+<h1>Modificación de plataforma</h1>
+	<form method="POST" th:action="@{/plataformas/persistir}" th:object="${plataforma}">
+		<label for="imagen">Imagen Actual: </label> <label th:text="${plataforma.imagen}"></label>
+		<br></br>
+		<input type="file" name="imagen" th:field="*{imagen}"/> 
+		<br></br>
+		
+		<label for="nombre">Nombre</label> 
+		<input type="text" name="nombre" th:field="*{nombre}" required/> 
+		
+		<input type="hidden" th:field="*{idplataforma}"/>
+		<input type="submit" value="Modificar"/>
+	</form>
+<a th:href="@{/plataformas}">Atrás</a>
+</body>
+</html>

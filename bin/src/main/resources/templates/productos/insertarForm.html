@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Nuevo Producto</title>
+</head>
+<body>
+<h1>Registro de producto</h1>
+	<form method="POST" th:action="@{/productos/persistir}" th:object="${producto}">
+		<label for="imagen">Imagen</label> 
+		<input type="file" name="imagen" th:field="*{imagen}"/> 
+		<br></br>
+		<label for="nombre">Nombre</label> 
+		<input type="text" name="nombre" th:field="*{nombre}" required/> 
+		<br></br>
+		<label for="resumen">Resumen</label>
+		<textarea name="resumen" th:field="*{resumen}"></textarea> 
+		<br></br>
+		<label for="sinopsis">Sinopsis</label>
+		<textarea name="sinopsis" th:field="*{sinopsis}"></textarea> 
+		<br></br>
+		<label for="plataforma">Plataforma</label>
+		<select th:field="*{plataforma.idplataforma}">
+			<option th:each="plataforma : ${plataformas}" th:text="${plataforma.nombre}" th:value=${plataforma.idplataforma}></option>
+		</select>
+		<br></br>
+		<label for="precio">Precio</label>
+		<input type="text" name="precio" th:field="*{precio}"/> 
+		<br></br>
+		<label for="fechasalida">Fecha Salida</label>
+		<input type="date" name="fechasalida" th:field="*{fechasalida}"/> 
+		<br></br>
+		<label for="disponibilidad">Disponibilidad</label>
+		<select name="disponibilidad" th:field="*{disponibilidad}">
+			<option value=true>Disponible</option>
+			<option value=false>Sin existencias</option>
+		</select> 
+		<br></br>
+		
+		<input type="submit" value="Registrar"/>
+	</form>
+<a th:href="@{/productos}">Atrás</a>
+</body>
+</html>

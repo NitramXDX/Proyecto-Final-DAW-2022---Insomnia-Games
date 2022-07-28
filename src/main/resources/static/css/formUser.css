@@ -1,0 +1,91 @@
+@import "./adminBasic.css";
+
+#section {
+	color: white;
+	font-family: Montserrat-Bold;
+	margin-bottom: 1.25rem;
+}
+
+#content {
+	margin-top: -3.75rem;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.938rem;
+	margin-top: 1.25rem;
+	padding-top: 1.875rem;
+	padding-left: 3.125rem;
+	padding-right: 3.125rem;
+}
+
+form #imgContainer {
+	width: 9.375rem;
+	height: 9.375rem;
+	border-radius: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: black;
+	margin: auto;
+	margin-bottom: 0.625rem;
+}
+
+form #imgContainer img {
+	height: 10.938rem;
+	cursor: pointer;
+}
+
+form #imgContainer:hover{
+	box-shadow: 0rem 0rem 0.438rem 0.438rem rgba(255,145,23,0.89);
+}
+
+form #file {
+	display: none;
+}
+
+form>div {
+	display: flex;
+	flex-direction: row;
+	gap: 2.5rem;
+	text-align: center;
+}
+
+form>div>div {
+	display: flex;
+	flex-direction: column;
+	gap: 0.625rem;
+	text-align: center;
+	width: 14.063rem;
+}
+
+form>div:nth-child(1){
+	flex-direction: column;
+	gap: 0;
+	margin-bottom: 1.25rem;
+	align-items: center;
+}
+
+form label {
+	font-size: 1.25rem;
+	text-align: left;
+}
+
+
+form input,
+form select {
+	padding: 0.188rem;
+	padding-left: 0.313rem;
+}
+
+.center {
+	align-items: center;
+}
+
+.center input {
+	width: 100%;
+	text-align: center; 
+}

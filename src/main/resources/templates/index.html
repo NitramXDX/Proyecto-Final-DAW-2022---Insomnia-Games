@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+
+<head>
+	<meta charset="utf-8">
+	<title>Insomnia Games</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/indexShop.css">
+	<link rel="stylesheet" href="/css/headerImg.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	<div id="headerImg"></div>
+    
+	<div id="section">
+	
+		<div id="title1" class="title">
+			<h1>Últimas novedades</h1>
+		</div>
+	
+		<div id="newGames"></div>
+		
+	</div>
+	
+		<div id="platContainer">
+			<div id ="platforms"></div>
+		</div>
+		
+	<div id="section">
+	
+		<div id="title2" class="title">
+			<h1>Mejores Ofertas</h1>
+		</div>
+	
+		<div id="discountGames"></div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/tienda.js"></script>
+</body>
+</html>

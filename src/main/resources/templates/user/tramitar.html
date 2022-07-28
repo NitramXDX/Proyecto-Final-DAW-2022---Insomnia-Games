@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+
+<head>
+	<meta charset="utf-8">
+	<title>Confirmar Pedido</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/indexShop.css">
+	<link rel="stylesheet" href="/css/tramite.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+    
+	<div id = "section">
+		
+		
+		<div id = "content">
+		<h1>Confirmar Pedido</h1>
+			
+			<table id="prodsList">
+			<tr>
+				
+				<th>Imagen</th> <th>Nombre</th> <th>Plataforma</th> <th>Precio/Uds</th> <th>Cantidad</th>  <th>Precio Total</th>
+			</tr>
+			
+			
+			</table>
+		
+			<div id="bottom">
+			
+				<button class="plusButton" id="confirmarCompra">Confirmar</button>
+				<div>Importe Total: <span id="totalPrice"></span></div>
+				
+			</div>
+		</div>
+	
+	</div>
+
+	<script src="/scripts/tramitar.js"></script>
+</body>
+</html>

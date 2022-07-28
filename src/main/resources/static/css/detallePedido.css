@@ -1,0 +1,39 @@
+@import "./perfil.css";
+
+#content {
+	margin-top: 0;
+}
+
+#content > h1{
+	margin-bottom: 1.5rem;
+}
+
+#content > div {
+	display: flex;
+	width: 88%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#content>div:first-of-type{
+	margin-bottom: 0.625rem;
+}
+
+#content > div > p {
+	width: 25rem;
+}
+
+#importeTotal {
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+	font-size: 1.50rem;	
+	width: 100%;
+}
+
+table {
+	width: 90%;
+	margin-top: 0.938rem;
+}
+

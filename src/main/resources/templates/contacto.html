@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Insomnia Games - Contacto</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/formContact.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div id="content">
+		
+			
+			<p id="error" th:text="${mensaje}"></p>
+			<p id="error2"></p>
+			
+			<h1>Formulario de contacto</h1>
+			<form method="POST" th:action="@{/contacto(mensajeEstado='Mensaje enviado con éxito.')}">
+				<div>
+					<div>
+							<label for="nombre">Nombre Completo *</label> 
+							<input type="text" name="nombre" id="nombre" required/>
+						
+							<label for="email">Email *</label> 
+							<input type="text" name="email" id="email" required/>
+					</div>
+					<div>
+						<img src="/images/resources/contactMailbox.png"></img>
+					</div>
+				</div>
+				
+				<div>
+					<div>
+						<label for="asunto">Asunto</label> 
+						<input name="pass" id="asunto"></input>
+					</div> 
+				</div>
+				
+				<div>
+					<div>
+						<label for="mensaje">Mensaje *</label> 
+						<textarea type="text" name="mensaje" id="mensaje" required></textarea> 
+					</div>
+				</div>
+				
+				<input type="submit" value="Enviar"/>
+				
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/imagesForm.js"></script>
+	<script src="/scripts/formCheckContact.js"></script>
+</body>
+</html>

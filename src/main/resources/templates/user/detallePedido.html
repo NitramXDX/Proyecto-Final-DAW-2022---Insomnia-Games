@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'Pedido Nº'+${pedido.idpedido}"></title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/detallePedido.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panelPerfil"></div>
+		
+		<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+		
+			<h1 th:text="'Pedido Nº'+${pedido.idpedido}"></h1>
+			<div>
+				<p th:text="'Estado: '+${pedido.estado}"></p>
+			</div>
+			<div>
+				<p th:text="'Fecha de Compra: '+${pedido.fechacompra}"></p>
+				<p id="importeTotal" th:text="'Importe Total: ' +(${pedido.importe} ?  ${#numbers.formatDecimal(pedido.importe, 0, 'COMMA', 2, 'POINT')} : '0' )+ '€'"></p>
+			</div>
+			
+			<table>
+			
+				<tr>
+					<th>Imagen</th> <th>Producto</th> <th>Plataforma</th> <th>Importe</th> <th>Clave</th>
+				</tr>
+				
+				<tr th:each="lineaPedido : ${lineasPedido}">
+					<td>
+						<div id="imgContainerSquare">
+							<img th:src="@{${'/images/products/'+lineaPedido.imagen}}"></img>
+						</div>
+					</td>
+					<td th:text="${lineaPedido.nombreprod}"></td>
+					<td th:text="${lineaPedido.plataforma}"></td>
+					<td th:text="${lineaPedido.importe}+'€'"></td>
+					<td>
+							<input type="text" readonly th:value="${lineaPedido.ejemplar} ? ${lineaPedido.ejemplar.clave} : 'Pendiente'"></input>
+					</td>
+				</tr>
+				
+			</table>
+			
+			
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

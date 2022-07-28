@@ -1,0 +1,78 @@
+@import "./general.css";
+@import "./tables.css";
+
+#content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+table {
+	width: 62.5rem;
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+}
+
+tbody {
+	font-size: 1rem;
+}
+
+tbody>tr>th,
+tbody>tr>td {
+	padding: 0.313rem;
+	text-align: center;
+}
+
+tbody>tr>th {
+	background-color: var(--Secundario);
+}
+
+tbody>tr>td {
+	height: 1.875rem;
+}
+
+tbody #imgContainerSquare {
+	border-radius: 0.313rem;
+	width: 7.5rem;
+	height: 4.375rem;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--Background);
+}
+
+tbody #imgContainerSquare img {
+	height: 4.6rem;
+	border-radius: 0.625rem;
+}
+
+.plusButton {
+	width: 10rem;
+	height: 2.3rem;
+	cursor: pointer;
+}
+
+#bottom {
+	display: flex;
+	width: 55rem;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;	
+	font-size: 1.125rem;
+}
+
+.exito {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1.25rem;
+}
+
+#emptyCartImg {
+	width: 15rem;
+	margin-top: 3.75rem;
+}

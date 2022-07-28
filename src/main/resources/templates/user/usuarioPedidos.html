@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Insomnia Games - Pedidos</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/perfil.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+
+	<div id="section">
+	
+		<div th:replace="fragments/panelPerfil"></div>
+		
+		<div id="content" class="usuarioPedidos">
+		
+			<h1 th:text="Pedidos"></h1>
+			
+			<table>
+			
+				<tr>
+					<th>ID Pedido</th><th>Fecha de Compra</th> <th>Estado</th> <th>Importe Total</th> <th>Acciones</th>
+				</tr>	
+				
+				<tr th:each="pedido : ${pedidos}">
+					<td th:text="${pedido.idpedido}"></td>
+					<td th:text="${pedido.fechacompra}"></td>
+					<td th:text="${pedido.estado}"></td>
+					<td th:text="${pedido.importe} ? ${pedido.importe}+'€' : '0.00€'"></td>
+					<td>
+						<a th:href="@{/lineaPedidos/user/detallePedido(idpedido=${pedido.idpedido})}"><i class="fa-solid fa-right-to-bracket" title="Detalle"></i></a>
+					</td>
+				</tr>
+				
+			</table>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

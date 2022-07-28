@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title th:text="'ModEjemplar'"></title>
+</head>
+<body>
+<h1>Modificar Ejemplar</h1>
+	<form method="POST" th:action="@{/ejemplares/persistir}" th:object="${ejemplar}">
+		<label for="clave">Clave</label> 
+		<input type="text" name="clave" th:field="*{clave}"/> 
+		<br></br>
+		
+		<label for="producto">Producto</label> 
+		<select th:field="*{producto.idproducto}">
+			<option th:each="producto : ${productos}" th:text="${producto.nombre}+' - '+${producto.plataforma.nombre}" th:value="${producto.idproducto}">
+		</select>
+		
+		<label for="fecha">Fecha insercción</label> 
+		<input type="date" name="fecha" th:field="*{fechainserc}"/> 
+		<br></br>
+		
+		<input type="hidden" th:field="*{idejemplar}"/>
+		
+		<input type="submit" value="Modificar"/>
+	</form>
+<a th:href="@{/ejemplares}">Atrás</a>
+</body>
+</html>

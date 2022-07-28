@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Plataformas</title>
+</head>
+<body>
+	<h1>PANEL DE ADMINISTRADOR</h1>
+	<a th:href="@{/productos}">Productos</a>
+	<a th:href="@{/plataformas}">Plataformas</a>
+	<a th:href="@{/usuarios}">Usuarios</a>
+	<a th:href="@{/pedidos}">Pedidos</a>
+	<a th:href="@{/ejemplares}">Stock</a>
+	<a th:href="@{/}">Salir</a>
+<h1>Lista de plataformas</h1>
+<table>
+	<tr>
+		<th>Nombre</th> <th>Imagen</th> <th>Acciones</th>
+	</tr>
+	<tr th:each="plataforma : ${plataformas}">
+		<td th:text="${plataforma.nombre}"></td>
+		<td th:text="${plataforma.imagen}"></td>
+		<td>
+			<a th:href="@{/plataformas/modificarForm(id=${plataforma.idplataforma})}" th:text="Modificar"></a>
+			<a th:href="@{/plataformas/eliminar(id=${plataforma.idplataforma})}" th:text="Eliminar"></a>
+			<a th:href="@{/plataformas/detalle(id=${plataforma.idplataforma})}" th:text="Detalle"></a>
+		</td>
+	</tr>
+</table>
+
+
+<a th:href="@{/plataformas/insertarForm}">Nuevo Plataforma</a>
+</body>
+</html>

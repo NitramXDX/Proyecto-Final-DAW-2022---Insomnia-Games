@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'Detalles - Pedido Nº'+${pedido.idpedido}"></title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/lineasPedidos.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+			
+			<h1 th:text="'Pedido Nº'+${pedido.idpedido}"></h1>	
+			<div id="datosPedido">
+				<div>
+					<p th:text="'Username: '+${pedido.usuario.nick}"></p>
+					<p th:text="'Nombre: '+${pedido.usuario.nombre}+' '+${pedido.usuario.apellidos}"></p>
+					<p th:text="'Email: '+${pedido.usuario.email}"></p>
+					<p th:text="'Teléfono de contacto: '+${pedido.usuario.tlf}"></p>
+				</div>
+				<div>
+					<p th:text="'Fecha de Compra: '+${pedido.fechacompra}"></p>
+					<p>Historial: <a th:href="@{/usuarios/admin/usuarioPedidos(idusuario=${pedido.usuario.idusuario})}">Pedidos de usuario</a></p>
+					<p th:text="'Estado: '+${pedido.estado}"></p>
+				</div>
+			</div>
+			<div id="button-price">				
+				<a class="plusButton" th:href="@{/lineaPedidos/admin/asignarClaves(idpedido=${pedido.idpedido})}" title="Procesar">Procesar</a>
+				<h2 th:text="'Importe Total: ' +(${pedido.importe} ?  ${#numbers.formatDecimal(pedido.importe, 0, 'COMMA', 2, 'POINT')} : '0' )+ '€'"></h2>
+			</div>
+			<table>
+			
+				<tr>
+					<th>Imagen</th> <th>Producto</th> <th>Plataforma</th> <th>Importe</th> <th>Estado</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="lineaPedido : ${lineasPedido}">
+					<td>
+							<div id="imgContainerSquare">
+								<img th:src="@{${'/images/products/'+lineaPedido.imagen}}"></img>
+							</div>
+					</td>
+					<td th:text="${lineaPedido.nombreprod}"></td>
+					<td th:text="${lineaPedido.plataforma}"></td>
+					<td th:text="${lineaPedido.importe}+'€'"></td>
+					<td>
+						<input type="text" readonly th:value="${lineaPedido.ejemplar} ? ${lineaPedido.ejemplar.clave} : 'Sin clave'"></input>
+					</td>
+					<td>
+						<a th:href="@{/lineaPedidos/admin/eliminarLP(idpedido=${pedido.idpedido} , idlineaPedido=${lineaPedido.idlineapedido})}"><i class="fa-solid fa-trash-can" title="Eliminar"></i></a>
+					</td>
+				</tr>
+				
+			</table>
+			
+			
+			<h2>Asignar Productos (Only for Testing)</h2>
+			
+			<table>
+			
+				<tr>
+					<th>Imagen</th> <th>Producto</th> <th>Plataforma</th> <th>Disponibilidad</th> <th>Importe</th> <th>Descuento</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="producto : ${productos}">
+					<td>
+						<div id="imgContainerSquare">
+							<img th:src="@{${'/images/products/'+producto.imagen}}"></img>
+						</div>
+					</td>
+					<td th:text="${producto.nombre}"></td>
+					<td th:text="${producto.plataforma.nombre}"></td>
+					<td th:text="${#lists.size(producto.ejemplar.?[lineapedido == null])==0 ? 'Sin existencias' :  #lists.size(producto.ejemplar.?[lineapedido == null])}"></td>
+					<td th:text="${producto.precio}+'€'"></td>
+					<td th:text="${producto.descuento}+'%'"></td>
+					<td>
+						<a th:href="@{/lineaPedidos/admin/asignar(idpedido=${pedido.idpedido}, idproducto=${producto.idproducto})}"><i class="fa-solid fa-cart-plus" title="Añadir"></i></a>
+					</td>
+				</tr>
+				
+			</table>
+			<div>
+			
+				<div class="paginacion">
+				
+					<p class="pagina" th:classappend="${prev == 0 ? 'disabled' : ''}">
+						<a th:href="@{/lineaPedidos/admin/(idpedido=${pedido.idpedido},page=${prev})}"><i class="fa-solid fa-backward" title="Anterior"></i></a>
+					</p>
+					<p class="pagina" th:each="page : ${pages}" th:classappend="${current == page ? 'active' : ''}">
+						<a th:href="@{/lineaPedidos/admin/(idpedido=${pedido.idpedido},page=${page})}" th:text="${page}"></a>
+					</p>
+					<p class="pagina" th:classappend="${current == last ? 'disabled' : ''}">
+						<a th:href="@{/lineaPedidos/admin/(idpedido=${pedido.idpedido},page=${next})}"><i class="fa-solid fa-forward" title="Siguiente"></i></a>
+					</p>
+						
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

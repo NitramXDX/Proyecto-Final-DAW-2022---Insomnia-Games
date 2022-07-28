@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Plataformas</title>
+</head>
+<body>
+	<h1>PANEL DE ADMINISTRADOR</h1>
+	<a th:href="@{/productos}">Productos</a>
+	<a th:href="@{/plataformas}">Plataformas</a>
+	<a th:href="@{/usuarios}">Usuarios</a>
+	<a th:href="@{/pedidos}">Pedidos</a>
+	<a th:href="@{/ejemplares}">Stock</a>
+	<a th:href="@{/}">Salir</a>
+<h1>Lista de usuarios</h1>
+<table>
+	<tr>
+		<th>Username</th> <th>Avatar</th> <th>Email</th> <th>Privado</th> <th>Status</th> <th>Fecha Registro</th>  <th>Acciones</th>
+	</tr>
+	<tr th:each="usuario : ${usuarios}">
+		<td th:text="${usuario.nick}"></td>
+		<td th:text="${usuario.avatar}"></td>
+		<td th:text="${usuario.email}"></td>
+		<td th:text="${usuario.privado}"></td>
+		<td th:text="${usuario.status}"></td>
+		<td th:text="${usuario.fecharegistro}"></td>
+		<td>
+			<a th:href="@{/usuarios/modificarForm(id=${usuario.idusuario})}" th:text="Modificar"></a>
+			<a th:href="@{/usuarios/eliminar(id=${usuario.idusuario})}" th:text="Eliminar"></a>
+			<a th:href="@{/usuarios/detalle(id=${usuario.idusuario})}" th:text="Detalle"></a>
+		</td>
+	</tr>
+</table>
+
+
+<a th:href="@{/usuarios/insertarForm}">Nuevo usuario</a>
+</body>
+</html>

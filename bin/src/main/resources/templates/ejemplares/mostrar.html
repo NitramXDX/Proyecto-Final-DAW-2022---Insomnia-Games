@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Plataformas</title>
+</head>
+<body>
+	<h1>PANEL DE ADMINISTRADOR</h1>
+	<a th:href="@{/productos}">Productos</a>
+	<a th:href="@{/plataformas}">Plataformas</a>
+	<a th:href="@{/usuarios}">Usuarios</a>
+	<a th:href="@{/pedidos}">Pedidos</a>
+	<a th:href="@{/ejemplares}">Stock</a>
+	<a th:href="@{/}">Salir</a>
+<h1>Lista de ejemplares</h1>
+<table>
+	<tr>
+		<th>Producto</th> <th>Clave</th> <th>Fecha Insercción</th> <th>Acciones</th>
+	</tr>
+	<tr th:each="ejemplar : ${ejemplares}">
+		<td th:text="${ejemplar.producto.nombre}+' - '+${ejemplar.producto.plataforma.nombre}"></td>
+		<td th:text="${ejemplar.clave}"></td>
+		<td th:text="${ejemplar.fechainserc}"></td>
+		<td>
+			<a th:href="@{/ejemplares/modificarForm(id=${ejemplar.idejemplar})}" th:text="Modificar"></a>
+			<a th:href="@{/ejemplares/eliminar(id=${ejemplar.idejemplar})}" th:text="Eliminar"></a>
+		</td>
+	</tr>
+</table>
+
+
+<a th:href="@{/ejemplares/insertarForm}">Nuevo Ejemplar</a>
+</body>
+</html>

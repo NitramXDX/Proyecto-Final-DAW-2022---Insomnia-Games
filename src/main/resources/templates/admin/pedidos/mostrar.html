@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Registro de Pedidos</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/adminBasic.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+			<h1>Registro de Pedidos</h1>
+			
+			<table>
+			
+				<tr>
+					<th>ID Pedido</th> <th>Usuario</th> <th>Fecha Compra</th> <th>Importe Total</th>  <th>Estado</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="pedido : ${pedidos.?[estado == 'Pendiente']}">
+				
+					<td th:text="${pedido.idpedido}"></td>
+					<td th:text="${pedido.usuario.nick}"></td>
+					<td th:text="${pedido.fechacompra}"></td>
+					<td th:text="(${pedido.importe} ? ${#numbers.formatDecimal(pedido.importe, 0, 'COMMA', 2, 'POINT')} : '0.00')+'€'"></td>
+					<td th:text="${pedido.estado}"></td>
+					<td>
+						<a th:href="@{/pedidos/admin/cancelar(id=${pedido.idpedido})}"><i class="fa-solid fa-ban" title="Cancelar"></i></a>
+						<a th:href="@{/lineaPedidos/admin/(idpedido=${pedido.idpedido})}"><i class="fa-solid fa-right-from-bracket" title="Tramitar"></i></a>
+					</td>
+					
+				</tr>
+				
+			</table>
+			
+			<h2>Historial de Pedidos</h2>
+			
+			<div id="filters">
+				<!-- 			Filters here -->
+			</div>
+			
+			<table>
+			
+				<tr>
+					<th>ID Pedido</th> <th>Usuario</th> <th>Fecha Compra</th> <th>Importe Total</th>  <th>Estado</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="pedido : ${pedidos.?[estado != 'Pendiente']}">
+				
+					<td th:text="${pedido.idpedido}"></td>
+					<td th:text="${pedido.usuario.nick}"></td>
+					<td th:text="${pedido.fechacompra}"></td>
+					<td th:text="(${pedido.importe} ? ${#numbers.formatDecimal(pedido.importe, 0, 'COMMA', 2, 'POINT')} : '0.00')+'€'"></td>
+					<td th:text="${pedido.estado}"></td>
+					<td>
+						<a th:href="@{/lineaPedidos/admin/(idpedido=${pedido.idpedido})}" ><i class="fa-solid fa-right-to-bracket" title="Detalle"></i></a>
+					</td>
+					
+				</tr>
+				
+			</table>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

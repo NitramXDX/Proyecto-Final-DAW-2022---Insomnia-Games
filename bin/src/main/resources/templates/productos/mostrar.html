@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Productos</title>
+</head>
+<body>
+	<h1>PANEL DE ADMINISTRADOR</h1>
+	<a th:href="@{/productos}">Productos</a>
+	<a th:href="@{/plataformas}">Plataformas</a>
+	<a th:href="@{/usuarios}">Usuarios</a>
+	<a th:href="@{/pedidos}">Pedidos</a>
+	<a th:href="@{/ejemplares}">Stock</a>
+	<a th:href="@{/}">Salir</a>
+<h1>Lista de productos</h1>
+<table>
+	<tr>
+		<th>Nombre</th> <th>Plataforma</th> <th>Disponibilidad</th> <th>Precio</th> <th>Acciones</th>
+	</tr>
+	<tr th:each="producto : ${productos}">
+		<td th:text="${producto.nombre}"></td>
+		<td th:text="${producto.plataforma.nombre}"></td>
+		<td th:text="${producto.disponibilidad}"></td>
+		<td th:text="${producto.precio}+'€'"></td>
+		<td>
+			<a th:href="@{/productos/modificarForm(id=${producto.idproducto})}" th:text="Modificar"></a>
+			<a th:href="@{/productos/eliminar(id=${producto.idproducto})}" th:text="Eliminar"></a>
+			<a th:href="@{/productos/detalle(id=${producto.idproducto})}" th:text="Detalle"></a>
+		</td>
+	</tr>
+</table>
+
+
+<a th:href="@{/productos/insertarForm}">Nuevo Producto</a>
+</body>
+</html>

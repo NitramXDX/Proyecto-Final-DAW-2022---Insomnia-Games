@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'Editar - '+${producto.nombre}+' - '+${producto.plataforma.nombre}"></title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/formProd.css">
+	
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+			
+			<p id="error" th:text="${mensaje}"></p>
+			<p id="error2"></p>
+			
+			<form method="POST" th:action="@{/productos/admin/persistir}" th:object="${producto}" enctype="multipart/form-data">
+				
+			<div>
+				<label for="file"><img th:src="@{${'/images/products/'+producto.imagen}}" th:alt="${producto.nombre}"></label>
+				<input type="file" name="file" id="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+				<div>
+					<div>
+						<label for="nombre">Nombre</label> 
+						<input type="text" name="nombre" th:field="*{nombre}" required/> 
+					</div>
+					<div>
+						<label for="plataforma">Plataforma</label>
+						<select name="plataforma" th:field="*{plataforma.idplataforma}">
+							<option th:each="plataforma : ${#lists.sort(plataformas, byNombre)}" th:text="${plataforma.nombre}" th:value=${plataforma.idplataforma} ></option>
+						</select>
+					</div>
+				</div>
+			</div>
+				
+			<div>
+				<div>
+					<label for="precio">Precio (€)</label>
+					<input type="number" name="precio" min="1.00" step="0.01" th:field="*{precio}" required/>
+				</div>
+				<div>
+					<label for="descuento">Descuento (%)</label>
+					<input type="number" name="descuento" th:field="*{descuento}" min="0" max="99" required/> 
+				</div>
+				<div>
+					<label for="fechasalida">Fecha Salida</label>
+					<input type="date" name="fechasalida" th:field="*{fechasalida}" required/> 
+				</div>
+			</div>
+				
+			<div class="textareaInput">
+				<label for="resumen">Resumen</label>
+				<textarea name="resumen" th:field="*{resumen}" required></textarea> 
+			</div>
+				
+			<div class="textareaInput">
+				<label for="sinopsis">Sinopsis</label>
+				<textarea name="sinopsis" th:field="*{sinopsis}" required></textarea> 
+			</div>
+			
+				<input type="hidden" th:field="*{idproducto}"/>
+				
+				<input type="submit" value="Modificar"/>
+				
+				
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/imagesForm.js"></script>
+	<script src="/scripts/formCheck.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+@import 'adminBasic.css';
+
+
+#content {
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-bottom: 6.25rem;
+}
+
+#content>div {
+	width: 50rem;	
+	display: flex;
+	flex-direction: column;
+	gap: 0.625rem;
+	background-color: var(--BackgroundElements);
+	padding: 1.75rem;
+	border-radius: 1.25rem;
+}
+
+#content >div > p {
+	line-height: 1.563rem;
+	font-size: 1rem;
+	font-family: Montserrat-Medium;
+}
+
+#content a{
+	font-family: Montserrat-Bold;
+	color: var(--HoverLinks);
+}
+
+#content a:hover{
+	color: var(--Links);
+}
+
+#content img {
+	width: 7.375rem;
+}

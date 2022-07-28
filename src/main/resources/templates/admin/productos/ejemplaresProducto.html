@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="'Ejemplares '+${producto.nombre} + ' ' + ${producto.plataforma.nombre}"></title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/formEjemp.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+		
+		<div id="section">
+		
+			<div th:replace="fragments/panel"></div>
+			
+			<div id="content">
+			
+				
+				<p id="error" th:text="${mensaje}"></p>
+				<p id="error2"></p>
+				<h1 th:text="${producto.nombre} + ' - ' + ${producto.plataforma.nombre}"></h1>
+				
+				<table>
+				
+					<tr>
+						<th>Clave</th> <th>Fecha insercción</th> <th>Estado</th> <th>Acciones</th>
+					</tr>
+					
+					<tr th:each="ejemplar : ${producto.ejemplar.?[lineapedido==null]}">
+					
+						<td>
+							<input type="text" readonly th:value="${ejemplar.clave} ? ${ejemplar.clave} : 'Sin clave'"></input>
+						</td>
+						<td th:text="${ejemplar.fechainserc}"></td>
+						<td th:text="${#lists.isEmpty(ejemplar.lineapedido) ? 'Sin asignación' : 'Asignada'}"></td>
+						<td>
+							<a th:href="@{/ejemplares/admin/modificarForm(id=${ejemplar.idejemplar})}"><i class="fa-solid fa-pen-to-square" title="Modificar"></i></a>
+							<a th:href="@{/ejemplares/admin/eliminar(id=${ejemplar.idejemplar})}"><i class="fa-solid fa-trash-can"title="Eliminar"></i></a>
+						</td>
+						
+					</tr>
+					
+				</table>
+				
+				<h2>Asignados</h2>
+				
+				<table>
+				
+					<tr>
+						<th>Clave</th> <th>Fecha insercción</th> <th>Estado</th> <th>Acciones</th>
+					</tr>
+					
+					<tr th:each="ejemplar : ${producto.ejemplar.?[lineapedido!=null]}">
+					
+						<td>
+							<input type="text" readonly th:value="${ejemplar.clave} ? ${ejemplar.clave} : 'Sin clave'"></input>
+						</td>
+						<td th:text="${ejemplar.fechainserc}"></td>
+						<td th:text="${#lists.isEmpty(ejemplar.lineapedido) ? 'Sin asignación' : 'Asignada'}"></td>
+						<td>
+							<a th:href="@{/ejemplares/admin/modificarForm(id=${ejemplar.idejemplar})}"><i class="fa-solid fa-pen-to-square" title="Modificar"></i></a>
+							<a th:href="@{/ejemplares/admin/eliminar(id=${ejemplar.idejemplar})}"><i class="fa-solid fa-trash-can" title="Eliminar"></i></a>
+						</td>
+						
+					</tr>
+					
+				</table>
+				
+				
+				<form id="newKey" method="POST" th:action="@{/ejemplares/admin/persistir}" th:object="${ejemplar}">
+				
+					<input type="hidden" th:field=*{fechainserc}/>
+					<input type="hidden" th:field=*{producto.idproducto}/>
+					<label for="clave">Nueva Clave</label>
+					<input type="text" th:field="*{clave}" name="clave" required/>
+					
+					<input type="submit" value="Añadir"></input>
+					
+				</form>
+				
+			</div>
+			
+		</div>
+		
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/formCheck.js"></script>
+</body>
+</html>

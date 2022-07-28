@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Editar Plataforma</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/formPlat.css">
+	<link href="/font-awesome/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+			
+			<p id="error" th:text="${mensaje}"></p>
+			<p id="error2"></p>
+			
+			<form method="POST" th:action="@{/plataformas/admin/persistir}" th:object="${plataforma}" enctype="multipart/form-data">
+			
+			<div>
+				<label for="file"><img th:src="@{${'/images/platforms/'+plataforma.imagen}}" th:alt="${plataforma.nombre}"></label>
+				<input type="file" name="file" id="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+			</div>
+				
+			<div>
+				<label for="nombre">Nombre de Plataforma</label> 
+				<input type="text" name="nombre" th:field="*{nombre}" required/> 
+			</div>
+				
+				<input type="hidden" th:field="*{idplataforma}"/>
+				
+				<input type="submit" value="Modificar"/>
+				
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/imagesForm.js"></script>
+	<script src="/scripts/formCheck.js"></script>
+</body>
+</html>

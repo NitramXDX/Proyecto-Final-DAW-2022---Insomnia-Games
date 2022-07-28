@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+<head>
+	<meta charset="utf-8">
+	<title th:text="${producto.nombre} + ' - ' + ${producto.plataforma.nombre}"></title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/detalleProducto.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div id="content">
+		
+			<h1><span id="nombre" th:text="${producto.nombre}"></span></h1>
+			
+			<div id="principal">
+			
+				<img id="imagen" th:src="'/images/products/' + ${producto.imagen}" th:alt="${producto.nombre}">
+				
+				<div>
+					<div id = "platState">
+						<div>
+							<img th:src="'/images/platforms/'+${producto.plataforma.imagen}"/>
+							<span id="plataforma" th:text="${producto.plataforma.nombre}"></span>
+						</div>
+						<div>
+							<i id="stock" th:if="${existencias}" class="fa-solid fa-check"></i>
+							<i id="notStock" th:if="!${existencias}" class="fa-solid fa-xmark"></i>
+							<p th:text="${existencias} ? 'En stock' : 'Sin stock'"></p>
+						</div>
+					</div>
+					
+					<div id="precios">
+						<p id="originalPrice"><span class="strikethrough" id="precio" th:text="${producto.precio}"></span>€</p>
+						<p id="discount" th:if="${producto.descuento}>0">-<span id="descuento" th:text="${producto.descuento}"></span>%</p>
+						<p id="discountPrice" th:text="${discountPrice}+'€'"></p>
+					</div>
+<!-- 					<p>Lanzamiento: <span id="fechaSalida" th:text="${producto.fechasalida}"></span></p> -->
+					
+					<button id="addToCart">Añadir al Carrito</button>
+					
+				</div>
+				
+			</div>
+			
+			<div id="resumen" >
+				<h3>Resumen</h3>
+				<p style="white-space: pre-line" th:text="${producto.resumen}"></p>
+			</div>
+			<div id="sinopsis">
+				<h3>Sinopsis</h3>
+				<p th:text="${producto.sinopsis}"></p>	
+			</div>
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

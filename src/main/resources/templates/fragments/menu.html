@@ -1,0 +1,37 @@
+<div id="menu" xmlns:th="www.thymeleaf.com">
+			<meta charset="utf-8">
+	        <a th:href="@{/index}"><img src="/images/webicon.png" /></a>
+	        <div id="buscador">
+	            <label><i class="fa-solid fa-magnifying-glass"></i></label>
+	            <input type="text" spellcheck="false" placeholder="Buscar...">
+	            <div id="resultado-buscador"></div>
+	        </div>
+	        <ul>
+<!-- 	            <i class="fas fa-bars hamburger"></i> -->
+	            <li><a th:href="@{/tienda}">EXPLORAR</a></li>
+	            <li><a th:href="@{/FAQ}">FAQ</a></li>
+	            <li><a th:href="@{/contacto}">CONTACTO</a></li>
+	            <li id="login-page">
+	            	<a th:href="@{/login}">
+	            	<i class="fa-solid fa-user"></i>
+	            	&nbsp<span th:text="${#authentication.name=='anonymousUser'} ? 'ENTRAR' : ${#authentication.name}"></span></a>
+	            	</li>
+	            <li id="cart"><i class="fas fa-shopping-cart"></i>&nbsp<span id="cartCount">0</span></li>
+	        </ul>
+</div>
+	 <div class="carrito">
+        <div id="bodyCart">Su carrito está vacío</div>
+        <div class="importeTotal">Importe total:&nbsp<span class="precioTotal">0.00</span>€
+            <a th:href="@{/pedidos/user/tramitar}"><button class="buttonShop">Comprar</button></a>
+        </div>
+    </div>
+    
+    <div id="velo"></div>
+    <div id="popUp">
+        <p>¿Desea eliminar estos productos de su carrito?</p>
+        <div class="botonesPopUp">
+            <button id="si">Si</button>
+            <button id="no">No</button>
+        </div>
+    </div>
+    

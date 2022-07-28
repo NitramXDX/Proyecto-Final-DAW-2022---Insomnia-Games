@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Plataformas</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/adminBasic.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+		<div th:replace="fragments/panel"></div>
+		
+		<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+			<h1>Lista de plataformas</h1>
+			
+			
+			<table>
+			
+				<tr>
+					<th>Imagen</th> <th>Nombre</th> <th>Productos</th> <th>Acciones</th>
+				</tr>
+				
+				<tr th:each="plataforma : ${#lists.sort(plataformas, byNombre)}">
+				
+					<td>
+						<div id="imgContainer">
+							<img th:src="@{${'/images/platforms/'+plataforma.imagen}}"></img>
+						</div>
+					</td>
+					<td th:text="${plataforma.nombre}"></td>
+					<td th:text="${#lists.size(plataforma.producto)} "></td>
+					<td>
+						<a th:href="@{/plataformas/admin/modificarForm(id=${plataforma.idplataforma})}"><i class="fa-solid fa-pen-to-square" title="Modificar"></i></a>
+						<a th:href="@{/plataformas/admin/eliminar(id=${plataforma.idplataforma})}"><i class="fa-solid fa-trash-can" title="Eliminar"></i></a>
+					</td>
+					
+				</tr>
+				
+		
+			</table>
+			
+			<div>
+			
+				<div class="paginacion">
+				
+					<p class="pagina" th:classappend="${prev == 0 ? 'disabled' : ''}">
+						<a th:href="@{|/plataformas/admin?page=${prev}|}"><i class="fa-solid fa-backward" title="Anterior"></i></a>
+					</p>
+					<p class="pagina" th:each="page : ${pages}" th:classappend="${current == page ? 'active' : ''}">
+						<a th:href="@{|/plataformas/admin?page=${page}|}" th:text="${page}"></a>
+					</p>
+					<p class="pagina" th:classappend="${current == last ? 'disabled' : ''}">
+						<a th:href="@{|/plataformas/admin?page=${next}|}"><i class="fa-solid fa-forward" title="Siguiente"></i></a>
+					</p>
+						
+				</div>
+				
+			</div>
+			
+			<a th:href="@{/plataformas/admin/insertarForm}" class="plusButton" title="Nueva Plataforma">Nueva Plataforma</i></a>
+			
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+</body>
+</html>

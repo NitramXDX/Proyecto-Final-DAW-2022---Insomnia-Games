@@ -1,0 +1,157 @@
+@import "./general.css";
+
+#section {
+	flex-direction: column;
+}
+
+#games, #newGames, #discountGames {
+	display: flex;
+	justify-content: center;
+	width: 76.25rem;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 2.5rem;
+	margin-top: 1.875rem;
+	margin-bottom: 5rem;
+}
+
+.item{
+	position: relative;
+}
+
+.item a,
+.platform a {
+	display: block;
+	transition: transform 0.5s;
+}
+
+.item a:hover, 
+.platform a:hover{
+	transform: scale(1.09, 1.09);
+}
+
+.productImg {
+	width: 23.75rem;
+	height: 13.75rem;
+	border-radius: 0.938rem;
+}
+
+.platformImg {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 100%;
+	margin-bottom: 0.313rem;
+	position: absolute;
+	transform: translate(-23.125rem, 0.625rem);
+}
+
+.discount {
+	color: white;
+	display: inline-block;	
+	position: absolute;
+	border-top-left-radius: 0.625rem;
+	border-bottom-left-radius: 0.625rem;
+	font-size: 1.125rem;
+	background-color: var(--Secundario);
+	width: 4.063rem;
+	height: 2.188rem;
+	line-height: 2.188rem;
+	text-align: center;
+	transform: translate(-4.063rem, 10.625rem);
+}
+
+.productInfo {
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.25rem;
+	margin-top: 0.938rem;
+}
+
+#section {
+	color: white;
+    font-family: Montserrat-Bold;
+    font-size: 1rem;
+}
+
+#platContainer {
+	width: 100%;
+	height: 18.75rem;
+	padding-top: 0.625rem;
+	padding-bottom: 0.625rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	justify-content: space-around;
+	margin: auto;
+	background: var(--BackgroundElements);
+	font-family: Montserrat-Bold;
+	color: white;
+}
+
+#platforms {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 3.125rem;
+}
+
+
+#platforms img {
+	width: 10.625rem;
+	height: 10.625rem;
+	border-radius: 100%;
+	margin-bottom: 0.313rem;
+}
+
+
+#platforms .productInfo > div {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#filters {
+	display: flex;
+	width: 60rem;
+	height: 5rem;
+	justify-content: center;
+	align-items: center;
+	gap: 3.5rem;
+	margin: auto;
+	padding-top: 0.625rem;
+	padding-bottom: 0.625rem;
+	border-radius: 0.8rem;
+	background-color: var(--DarkBG);
+	border: solid 0.325rem var(--Secundario);
+	margin-bottom: 2.5rem;
+}
+
+#filters div {
+	display: flex;
+	flex-direction: column;	
+	gap: 0.625rem;
+	font-size: 1.125rem;
+}
+
+#filters input {
+	height: 1.25rem;
+	width: 11.25rem;
+	padding: 0.188rem;
+	padding-left: 0.625rem;
+	font-size: 1rem;
+	font-family: Montserrat-Medium;
+}
+
+#filters select {
+	height: 1.875rem;
+	width: 11.25rem;
+	font-size: 1rem;
+	padding-left: 0.625rem;
+	font-family: Montserrat-Medium;
+}
+
+#title2 {
+	margin-top: 4.375rem;
+}
+
+
+

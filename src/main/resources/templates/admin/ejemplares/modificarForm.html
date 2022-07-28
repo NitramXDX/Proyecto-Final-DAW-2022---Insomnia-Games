@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+	<meta charset="UTF-8">
+	<title>Editar Ejemplar</title>
+	<link rel="icon" type="image/png" th:href="@{/images/favicon.png}"/>
+	<link rel="stylesheet" href="/css/formEjemp.css">
+	<link href="/font-awesome/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:replace="fragments/menu"></div>
+	
+	<div id="section">
+	
+	<div th:replace="fragments/panel"></div>
+		
+	<div id="content">
+		
+			<p id="error" th:text="${mensaje}"></p>
+			<p id="error2"></p>
+		
+			<form method="POST" th:action="@{/ejemplares/admin/persistir}" th:object="${ejemplar}">
+			<div>
+				<label for="clave">Clave</label> 
+				<input type="text" name="clave" th:field="*{clave}"/> 
+			</div>
+			<div>	
+				<label for="producto">Producto</label> 
+				<select th:field="*{producto.idproducto}">
+					<option th:each="producto : ${#lists.sort(productos, byNombre)}" th:text="${producto.nombre}+' - '+${producto.plataforma.nombre}" th:value="${producto.idproducto}">
+				</select>
+			</div>
+				<input type="hidden" th:field="*{idejemplar}"/>
+				
+			<div>
+				<div>
+					<input type="submit" value="Editar"/>
+					<a class="buttonPage" th:href="@{/productos/admin/ejemplares(id=${ejemplar.producto.idproducto})}">Volver</a>
+				</div>
+			</div>	
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<script src="/scripts/index.js"></script>
+	<script src="/scripts/formCheck.js"></script>
+</body>
+</html>

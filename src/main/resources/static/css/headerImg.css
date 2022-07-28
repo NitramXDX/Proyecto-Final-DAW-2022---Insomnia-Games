@@ -1,0 +1,40 @@
+@import "./general.css";
+
+#headerImg {
+	height: 28.125rem; 
+	background-color: var(--Background); 
+	width: 100%; 
+	margin-top: 4.688rem;
+	overflow: hidden;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	cursor: pointer;
+}
+
+#headerImg  #left {
+	clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+	transform: translateX(4.375rem);
+}
+
+#headerImg  #right {
+	clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+	transform: translateX(-4.375rem);	
+}
+
+#headerImg  #right:hover img, 
+#headerImg  #left:hover img{
+	width: 75rem;
+}
+
+#headerImg  img {
+	width: 69.063rem;
+	transform: translateY(1.25rem);
+	transition: width .8s;
+}
+
+#section {
+	margin-top: 0;
+}

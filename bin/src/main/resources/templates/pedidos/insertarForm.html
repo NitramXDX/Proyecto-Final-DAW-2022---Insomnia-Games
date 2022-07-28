@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th = "www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Nuevo pedido</title>
+</head>
+<body>
+<h1>Registro de pedido</h1>
+	<form method="POST" th:action="@{/pedidos/persistir}" th:object="${pedido}">
+	
+		<label for="usuario">Usuario</label> 
+		<select th:field="*{usuario.idusuario}" name="usuario" required>
+			<option th:each="usuario : ${usuarios}"  th:value="${usuario.idusuario}" th:text="${usuario.nick}"/>
+		</select>
+		<br></br> 
+		
+		<label for="fechacompra">Fecha Compra</label> 
+		<input type="date" name="fechacompra" th:field="*{fechacompra}"/> 
+		<br></br>
+		<select th:field="*{estado}" name="estado" required>
+			<option value="Pendiente">Pendiente</option>
+			<option value="En trámite">En trámite</option>
+			<option value="Resuelto">Resuelto</option>
+		</select>
+		<br></br> 
+		<input type="submit" value="Registrar"/>
+	</form>
+<a th:href="@{/pedidos}">Atrás</a>
+</body>
+</html>
